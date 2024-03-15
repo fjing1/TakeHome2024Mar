@@ -17,21 +17,26 @@ def test_add_1st():
     manager.clear()
 
 def test_add_2nd():
-    manager = IntensityManager()
+    im = IntensityManager()
     # Test add method with 2nd test case
-    manager.add(10, 30, 1)
-    print(manager.get_turning_point_intensities())
-    assert manager.get_turning_point_intensities() == [(10, 1), (30, 0)]
-    manager.add(20, 40, 1)
-    assert manager.get_turning_point_intensities() == [(10, 1), (20, 2), (30, 1), (40, 0)]
+    im.add(10, 30, 1)
+    print(im.get_turning_point_intensities())
+    assert im.get_turning_point_intensities() == [(10, 1), (30, 0)]
+    im.add(20, 40, 1)
+    assert im.get_turning_point_intensities() == [(10, 1), (20, 2), (30, 1), (40, 0)]
 
-    manager.add(10, 40, -1)
-    print(manager.get_turning_point_intensities())
-    assert manager.get_turning_point_intensities() == [(20, 1), (30, 0)]
-    manager.add(10, 40, -1)
-    print(manager.get_turning_point_intensities())
-    assert manager.get_turning_point_intensities() == [(10, -1), (20, 0),(30, -1), (40, 0)]
+    im.add(10, 40, -1)
+    print(im.get_turning_point_intensities())
+    assert im.get_turning_point_intensities() == [(20, 1), (30, 0)]
+    im.add(10, 40, -1)
+    print(im.get_turning_point_intensities())
+    assert im.get_turning_point_intensities() == [(10, -1), (20, 0),(30, -1), (40, 0)]
 
+def test_set_default():
+    im = IntensityManager()
+    im.set(1, 5, 2)
+    assert im.get_turning_point_intensities() == [(1, 2), (5, 0)]
 print("start testing")
 test_add_1st()
 test_add_2nd()
+test_set_default()
